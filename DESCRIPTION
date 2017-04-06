@@ -11,7 +11,8 @@ Author: Caleb Lareau [aut, cre]
 Description: A convenience package for converting between popular mouse & human builds. 
 Imports:
     rtracklayer,
-    methods
+    methods,
+    GenomicRanges
 License: MIT + file LICENSE
 LazyData: TRUE
 Suggests:

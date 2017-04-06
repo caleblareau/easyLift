@@ -10,6 +10,8 @@ NULL
 #' @param write Either write (by default) to file if TRUE 
 #' or return a GRanges object of the result. 
 #' @import rtracklayer
+#' @import GenomicRanges
+#' 
 #' @importFrom utils write.table
 #' @return A GRanges if write == FALSE; spits out a new
 #' bed file if write == TRUE. 
@@ -32,7 +34,8 @@ easyLiftOver <- function(from, to = NULL, map = "hg19_hg38", write = TRUE) {
   
   if(!write) return(toOut)
   if(is.null(to)) to <- paste0(from, "over")
-  if(write) write.table(data.frame(toOut)[,1:3], sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE, file = to)
+  odf <- GenomicRanges::as.data.frame(toOut)[,c(1,2,3)]
+  if(write) write.table(odf, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE, file = to)
   return(paste0( "Attempted to write to file: ", to))
   
 }
