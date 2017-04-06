@@ -1,0 +1,30 @@
+Package: easyLift
+Type: Package
+Title: Efficient compression and analysis of Hi-C Data
+Version: 0.1.0
+Date: 2017-04-05
+Authors@R: c(
+    person("Caleb", "Lareau", email = "caleblareau@g.harvard.edu", role = c("aut", "cre"))
+    )
+Maintainer: Caleb Lareau <caleblareau@g.harvard.edu>
+Author: Caleb Lareau [aut, cre]
+Description: A convenience package for converting between popular mouse & human builds. 
+Imports:
+    rtracklayer,
+    methods
+License: MIT + file LICENSE
+LazyData: TRUE
+Suggests:
+    knitr,
+    doParallel,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+biocViews: Preprocessing, QualityControl, Visualization, DataImport,
+    DataRepresentation, GO
+NeedsCompilation: no
+Collate: 
+    'easyLift.R'
+    'conversion.R'
+    
