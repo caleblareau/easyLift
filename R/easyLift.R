@@ -1,4 +1,4 @@
-#' easyLift: Efficient parallelized compression of Hi-C Data
+#' easyLift: Convenience R function/environment for lifting over genome builds
 #'
 #' The easyLift package contains functions to quickly convert
 #' between different builds of the mouse and human genome. 

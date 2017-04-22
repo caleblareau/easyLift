@@ -4,28 +4,31 @@
 \alias{easyLiftOver}
 \title{easyLiftOver}
 \usage{
-easyLiftOver(from, to = NULL, map = "hg19_hg38", write = TRUE)
+easyLiftOver(from, map = "hg19_hg38", to = NULL)
 }
 \arguments{
-\item{from}{.bed file}
+\item{from}{A .bed file or GRanges object containing
+coordinates to be lifted over.}
 
-\item{to}{.bed file of the output after lifting over}
+\item{map}{Reference genome mapping logic {FROM}_{TO}
+or alternatively, the filepath associated with a valid
+.chain file.}
 
-\item{map}{Reference genome mapping logic {FROM}_{TO}}
-
-\item{write}{Either write (by default) to file if TRUE 
-or return a GRanges object of the result.}
+\item{to}{File to write liftover output to. By default,
+we just append "over" to the input file name. This 
+parameter is ignored if the user specifies a GRanges object.}
 }
 \value{
-A GRanges if write == FALSE; spits out a new
-bed file if write == TRUE.
+A GRanges if "from" is a GRanges. 
+Otherwise, it will write a file with "over" appeneded
+with the lifted over coordinates
 }
 \description{
 Function to get permuted data while maintaining biases
 }
 \examples{
-sf <- paste0(system.file('extdata',package='easyLift'),'/exbed/hg19.quick.bed')
+from <- paste0(system.file('extdata',package='easyLift'),'/exbed/hg19.quick.bed')
 #easyLiftOver(sf, map = "hg19_hg38") # spits out the lifted over bed file
-liftedGRanges <- easyLiftOver(sf, map = "hg19_hg38", write = FALSE)
+liftedGRanges <- easyLiftOver(from, map = "hg19_hg38")
 
 }

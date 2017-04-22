@@ -4,7 +4,7 @@
 \name{easyLift}
 \alias{easyLift}
 \alias{easyLift-package}
-\title{easyLift: Efficient parallelized compression of Hi-C Data}
+\title{easyLift: Convenience R function/environment for lifting over genome builds}
 \description{
 The easyLift package contains functions to quickly convert
 between different builds of the mouse and human genome. 

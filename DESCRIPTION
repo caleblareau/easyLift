@@ -1,8 +1,8 @@
 Package: easyLift
 Type: Package
 Title: Efficient compression and analysis of Hi-C Data
-Version: 0.1.0
-Date: 2017-04-05
+Version: 0.2.0
+Date: 2017-04-22
 Authors@R: c(
     person("Caleb", "Lareau", email = "caleblareau@g.harvard.edu", role = c("aut", "cre"))
     )

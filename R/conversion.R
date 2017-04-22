@@ -4,38 +4,54 @@ NULL
 #' easyLiftOver
 #'
 #' Function to get permuted data while maintaining biases
-#' @param from .bed file 
+#' @param from A .bed file or GRanges object containing
+#' coordinates to be lifted over.
 #' @param map Reference genome mapping logic {FROM}_{TO}
-#' @param to .bed file of the output after lifting over
-#' @param write Either write (by default) to file if TRUE 
-#' or return a GRanges object of the result. 
+#' or alternatively, the filepath associated with a valid
+#' .chain file.
+#' @param to File to write liftover output to. By default,
+#' we just append "over" to the input file name. This 
+#' parameter is ignored if the user specifies a GRanges object.
 #' @import rtracklayer
 #' @import GenomicRanges
 #' 
 #' @importFrom utils write.table
-#' @return A GRanges if write == FALSE; spits out a new
-#' bed file if write == TRUE. 
+#' @return A GRanges if "from" is a GRanges. 
+#' Otherwise, it will write a file with "over" appeneded
+#' with the lifted over coordinates
 #' 
 #' @export
 #' @examples 
-#' sf <- paste0(system.file('extdata',package='easyLift'),'/exbed/hg19.quick.bed')
+#' from <- paste0(system.file('extdata',package='easyLift'),'/exbed/hg19.quick.bed')
 #' #easyLiftOver(sf, map = "hg19_hg38") # spits out the lifted over bed file
-#' liftedGRanges <- easyLiftOver(sf, map = "hg19_hg38", write = FALSE)
+#' liftedGRanges <- easyLiftOver(from, map = "hg19_hg38")
 #' 
-easyLiftOver <- function(from, to = NULL, map = "hg19_hg38", write = TRUE) {
+easyLiftOver <- function(from, map = "hg19_hg38", to = NULL) {
   
+  # Handle mapping
   support <- c("hg19_hg38", "hg38_hg19", "mm9_mm10", "mm10_mm9")
-  stopifnot(map %in% support)
-  chf<-paste0(system.file('extdata',package='easyLift'),'/chains/',map, '.over.chain')
+  if(map %in% support){
+    chf<-paste0(system.file('extdata',package='easyLift'),'/chains/',map, '.over.chain')
+  } else {
+    chf <- map
+  }
+  stopifnot(file.exists(chf))
   ch <- import.chain(chf)
-  original <- import(from)
-  toOut <- liftOver(x=original, chain=ch)
-  toOut <- unlist(toOut)
   
-  if(!write) return(toOut)
-  if(is.null(to)) to <- paste0(from, "over")
-  odf <- GenomicRanges::as.data.frame(toOut)[,c(1,2,3)]
-  if(write) write.table(odf, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE, file = to)
-  return(paste0( "Attempted to write to file: ", to))
-  
+  # Handle input
+  if( as.character(class(from)) == "GRanges"){
+    return(unlist(liftOver(x=from, chain=ch)))
+    
+  } else {
+    
+    # Input is a .bed file; output will be a .bed file
+    stopifnot(file.exists(from))
+    original <- import(from,  format="bed")
+    toOut <- unlist(liftOver(x=original, chain=ch))
+    if(is.null(to)) to <- paste0(from, "over")
+    odf <- GenomicRanges::as.data.frame(toOut)[,c(1,2,3)]
+    write.table(odf, sep = "\t", row.names = FALSE,
+                col.names = FALSE, quote = FALSE, file = to)
+    return(paste0( "Attempted to write to file: ", to))
+  }
 }
