@@ -7,7 +7,7 @@ devtools::install_github("buenrostrolab/easyLift")
 ```
 
 ## Quick Usage
-Grab the convenient Rscript from the `vignettes` folder
+Grab the convenient [Rscript](vignettes/easyLiftOver.R) from the `vignettes` folder
 to run everything from the command line like so--
 
 ```
