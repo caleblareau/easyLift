@@ -32,4 +32,8 @@ For the first (`from`) parameter, the file extension doesn't necessarily need to
 ## Advanced Usage
 - In the `R` environment, using `easyLift::easyLiftOver` on a `GRanges` object will return a `GRanges` object with lifted over coordinates again specified by the second (`map`) parameter. 
 
-- If you have a `.chain` file that you want to use (e.g. for going from mm10 to hg38), specify that file path in the second argument.  
+- If you have a `.chain` file that you want to use (e.g. for going from mm10 to hg38), specify that file path in the second argument. This gives a sample URL structure to access these cross-species chain files from UCSC. 
+
+```
+http://hgdownload.cse.ucsc.edu/goldenpath/hg38/vsMm10/
+```

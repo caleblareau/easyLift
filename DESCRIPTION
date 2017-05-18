@@ -1,7 +1,7 @@
 Package: easyLift
 Type: Package
-Title: Efficient compression and analysis of Hi-C Data
-Version: 0.2.0
+Title: Convenience package for solving some liftover challenges
+Version: 0.2.1
 Date: 2017-04-22
 Authors@R: c(
     person("Caleb", "Lareau", email = "caleblareau@g.harvard.edu", role = c("aut", "cre"))
@@ -12,7 +12,8 @@ Description: A convenience package for converting between popular mouse & human 
 Imports:
     rtracklayer,
     methods,
-    GenomicRanges
+    GenomicRanges,
+    IRanges
 License: MIT + file LICENSE
 LazyData: TRUE
 Suggests:
@@ -28,4 +29,3 @@ NeedsCompilation: no
 Collate: 
     'easyLift.R'
     'conversion.R'
-    

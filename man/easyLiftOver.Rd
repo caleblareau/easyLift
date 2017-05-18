@@ -4,7 +4,7 @@
 \alias{easyLiftOver}
 \title{easyLiftOver}
 \usage{
-easyLiftOver(from, map = "hg19_hg38", to = NULL)
+easyLiftOver(from, map = "hg19_hg38", to = NULL, pickOne = FALSE)
 }
 \arguments{
 \item{from}{A .bed file or GRanges object containing
@@ -17,6 +17,9 @@ or alternatively, the filepath associated with a valid
 \item{to}{File to write liftover output to. By default,
 we just append "over" to the input file name. This 
 parameter is ignored if the user specifies a GRanges object.}
+
+\item{pickOne}{Choose one region to represent the liftover
+(the longest) rather than all possible regions (default).}
 }
 \value{
 A GRanges if "from" is a GRanges. 
@@ -24,7 +27,12 @@ Otherwise, it will write a file with "over" appeneded
 with the lifted over coordinates
 }
 \description{
-Function to get permuted data while maintaining biases
+Function to get lifted over coordinates using
+rtracklayer + chain file for a couple of different
+inputs. Returns all mapped regions as a GRanges/bed
+file unless "pickOne" is true, in which case 
+the range with the longest genomic positioning will be
+returned.
 }
 \examples{
 from <- paste0(system.file('extdata',package='easyLift'),'/exbed/hg19.quick.bed')
