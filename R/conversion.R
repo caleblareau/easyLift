@@ -3,7 +3,10 @@ NULL
 
 #' easyLiftOver
 #'
-#' Function to get permuted data while maintaining biases
+#' Function to get lifted over coordinates using
+#' rtracklayer + chain file for a couple of different
+#' inputs
+#'
 #' @param from A .bed file or GRanges object containing
 #' coordinates to be lifted over.
 #' @param map Reference genome mapping logic {FROM}_{TO}
