@@ -33,7 +33,7 @@ pickOne <- function(grl, returnBooVec = FALSE) {
                      strand = as.factor(c("+", "-", rep("*", n-2))), stringsAsFactors = FALSE)
   
   # Make T/F vector whether a range matched. 
-  boo <- sapply(1:5, function(i){
+  boo <- sapply(1:n, function(i){
     gr <- grl[[i]]
     if(length(gr) >= 1){
       flat[i,] <<- data.frame(gr[which.max(end(gr) - start(gr))])[,1:5]
