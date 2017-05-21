@@ -3,7 +3,7 @@ R package for easy `mm9 <-> mm10 / hg19 <-> hg38`
 
 ## Install
 ```
-devtools::install_github("buenrostrolab/easyLift")
+devtools::install_github("caleblareau/easyLift")
 ```
 
 ## Quick Usage
